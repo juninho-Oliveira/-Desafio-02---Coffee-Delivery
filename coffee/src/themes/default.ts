@@ -2,7 +2,7 @@
 
 export const theme = {
     colors: {
-      yelloDark: '#C47F17',
+      yellowDark: '#C47F17',
       yellow: '#DBAC2C',
       yellowLight: '#F1E9C9',
 
@@ -22,6 +22,7 @@ export const theme = {
       background: '#FAFAFA',
       white: '#FFFFFF',
     },
+
     fonts: {
       baloo: '"Baloo 2" , sans-serif',
       roboto: '"Roboto" , sans-serif',

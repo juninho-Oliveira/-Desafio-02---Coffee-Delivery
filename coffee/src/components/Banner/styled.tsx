@@ -1,4 +1,36 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
+
+export type SpanVariant = 'primary' | 'secondary' | 'danger' | 'success'
+
+interface SpanProps {
+    variant: SpanVariant;
+}
+
+const SpanVariants = {
+    primary: 'yellowDark',
+    secondary: 'baseText',
+    danger: 'yellow',
+    success: 'purple',
+};
+
+export const SpanContainer = styled.span<SpanProps> `
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.2rem;
+        height: 2.2rem;
+        padding: 0.5rem;
+        border-radius: 50%;
+        color: ${({theme})=> theme.colors.white};
+        ${props => {
+        const bgColor = SpanVariants[props.variant];
+        return css`
+            background-color: ${({ theme }) => theme.colors[bgColor]};
+        `;
+    }}
+
+`; 
 
 export const BannerContainer = styled.div `
     display: flex;
@@ -50,15 +82,6 @@ export const BannerContainer = styled.div `
             gap: 12px;
             width: 17rem;
 
-            &> span {
-                display: flex;
-                align-items: center;
-                width: 2rem;
-                height: 2rem;
-                padding: 0.5rem;
-                border-radius: 50%;
-                border: 1px solid red;
-            }
 
             &> p{
                     font-family: ${({theme})=> theme.fonts.roboto};

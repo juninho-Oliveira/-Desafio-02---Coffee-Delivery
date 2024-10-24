@@ -1,4 +1,5 @@
 
+import { Banner } from "./components/Banner/Banner"
 import { Header } from "./components/Header/Header"
 import { GlobalStyle } from "./global"
 import { theme } from './themes/default'
@@ -12,6 +13,7 @@ export function App() {
       < ThemeProvider theme={theme}>
       < GlobalStyle />
         <Header />
+        < Banner />
       </ThemeProvider>
     </>
   )

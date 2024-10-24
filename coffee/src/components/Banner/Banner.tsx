@@ -6,7 +6,7 @@ import imgame from "../../assets/Imagem-café.png"
 export function Banner() {
     return (
         < BannerContainer >
-            <div >
+            <div>
                 <div className="texto">
                     <div className="titulo">
 

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components"
+import backgroundImage from "../../assets/intro-background.png";
 
 export type SpanVariant = 'primary' | 'secondary' | 'danger' | 'success'
 
@@ -22,7 +23,7 @@ export const SpanContainer = styled.span<SpanProps> `
         height: 2.2rem;
         padding: 0.5rem;
         border-radius: 50%;
-        color: ${({theme})=> theme.colors.white};
+        color: ${({ theme }) => theme.colors.white};
         ${props => {
         const bgColor = SpanVariants[props.variant];
         return css`
@@ -30,19 +31,23 @@ export const SpanContainer = styled.span<SpanProps> `
         `;
     }}
 
-`; 
+`;
 
-export const BannerContainer = styled.div `
+export const BannerContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
     height: 34rem;
+    background-image: url(${backgroundImage});
+
 
     &> div {
         width: 80%;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+
+        
 
         .texto {
             display: flex;
@@ -53,16 +58,16 @@ export const BannerContainer = styled.div `
 
         .titulo {
             &> h1 {
-                color: ${({theme})=> theme.colors.baseTitle};
+                color: ${({ theme }) => theme.colors.baseTitle};
                 font-size: 48px;
-                font-family: ${({theme})=> theme.fonts.baloo};
+                font-family: ${({ theme }) => theme.fonts.baloo};
                 font-weight: bold;
             };
 
             &> p {
-                color: ${({theme})=> theme.colors.baseSubtitle};
+                color: ${({ theme }) => theme.colors.baseSubtitle};
                 font-size: 20px;
-                font-family: ${({theme})=> theme.fonts.roboto};
+                font-family: ${({ theme }) => theme.fonts.roboto};
                 font-weight: 400;
             }
         }
@@ -84,8 +89,8 @@ export const BannerContainer = styled.div `
 
 
             &> p{
-                    font-family: ${({theme})=> theme.fonts.roboto};
-                    color: ${({theme})=> theme.colors.baseText};
+                    font-family: ${({ theme }) => theme.fonts.roboto};
+                    color: ${({ theme }) => theme.colors.baseText};
                     font-weight: 500;
                     font-size: 14px;
                 }

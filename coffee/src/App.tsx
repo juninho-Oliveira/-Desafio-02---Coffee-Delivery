@@ -1,13 +1,16 @@
-import { GlobalStyled } from "./global"
+
+import { GlobalStyle } from "./global"
 import { Header } from "./styled"
+
+import { theme } from './themes/default'
+import { ThemeProvider } from "styled-components"
 
 export function App() {
 
   return (
     <>
-      <GlobalStyled>
-
-
+      < GlobalStyle />
+      < ThemeProvider theme={theme}>
         <Header>
           <h1>logo</h1>
 
@@ -18,8 +21,7 @@ export function App() {
             </ul>
           </nav>
         </Header>
-
-      </GlobalStyled>
+      </ThemeProvider>
     </>
   )
 }

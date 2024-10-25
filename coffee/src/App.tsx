@@ -4,7 +4,7 @@ import { Header } from "./components/Header/Header"
 import { GlobalStyle } from "./global"
 import { theme } from './themes/default'
 import { ThemeProvider } from "styled-components"
-
+import { Main } from "./components/Main/Main"
 
 export function App() {
 
@@ -14,6 +14,7 @@ export function App() {
       < GlobalStyle />
         <Header />
         < Banner />
+        <Main />
       </ThemeProvider>
     </>
   )

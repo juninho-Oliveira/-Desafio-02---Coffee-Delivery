@@ -39,7 +39,7 @@ export function CardList() {
                                     <p>{quanti}</p>
                             <button onClick={somar}>+</button>
                         </div>
-                        <button > 
+                        <button title="Abrir carrinho de compras"> 
                             <ShoppingCart size={26} />
                         </button>
                     </div>

@@ -12,7 +12,7 @@ export function Header() {
                 <div>
                     <div className="map">
                         < MapPinArea size={22} />
-                        Porto Alegre, RS
+                        <p>Ferraz de vasconcelos, SP</p>
                     </div>
                     <div className="carrinho">
                         < ShoppingCart size={22} />

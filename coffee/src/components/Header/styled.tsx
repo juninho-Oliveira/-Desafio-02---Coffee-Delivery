@@ -18,19 +18,21 @@ export const HeaderStyled = styled.header`
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: 12rem;
+            width: 14rem;
             height: 2.3rem;
 
             .map {
                 display: flex;
                 align-items: center;
+                text-align: center;
                 justify-content: center;
-                gap: 4px;
+                gap: 2px;
+                padding: 8px;
 
-                font-size: 14px;
+                font-size: 12px;
                 font-family: ${({theme})=> theme.fonts.roboto};
                 color: ${({theme})=> theme.colors.purpleDark};
-                width: 8.9rem;
+                width: auto;
                 height: 100%;
                 border-radius: 6px;
                 background-color: ${({theme})=> theme.colors.purpleLight};

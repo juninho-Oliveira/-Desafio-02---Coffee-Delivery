@@ -1,10 +1,10 @@
 
-import { Banner } from "./components/Banner/Banner"
+//import { Banner } from "./components/Banner/Banner"
 import { Header } from "./components/Header/Header"
 import { GlobalStyle } from "./global"
 import { theme } from './themes/default'
 import { ThemeProvider } from "styled-components"
-import { Main } from "./components/Main/Main"
+//import { Main } from "./components/Main/Main"
 
 export function App() {
 
@@ -12,9 +12,10 @@ export function App() {
     <>
       < ThemeProvider theme={theme}>
       < GlobalStyle />
-        <Header />
-        < Banner />
-        <Main />
+         <Header />
+
+        {/*< Banner />
+        <Main /> */}
       </ThemeProvider>
     </>
   )

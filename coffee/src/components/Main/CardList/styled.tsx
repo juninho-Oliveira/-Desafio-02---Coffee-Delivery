@@ -13,14 +13,77 @@ export const ContainerCard = styled.div `
 
     .conteudo {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         flex-direction: column;
         gap: 5px;
         align-items: center;
 
+        &> section {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 100%;
+
+            &> p {
+                font-size: 24px;
+                font-weight: bolder;
+                font-family: ${({theme})=> theme.fonts.baloo};
+                color: ${({theme})=> theme.colors.baseText};
+
+
+                &> span {
+                    font-size: 14px;
+                    font-weight: 400;
+                    font-family: ${({theme})=> theme.fonts.roboto};
+                }
+            }
+
+            &> div {
+                display: flex;
+                gap: 8px;
+
+                .botao {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+                    font-size: 16px;
+                    font-weight: 400;
+                    font-family: ${({theme})=> theme.fonts.roboto};
+                    color: ${({theme})=> theme.colors.baseTitle};
+
+                    background-color: ${({theme})=> theme.colors.baseButton};
+                    border-radius: 6px;
+
+                    padding: 8px;
+                    width: 72px;
+
+                    &> button {
+                        border: none;
+                        font-size: 24px;
+                        color: ${({theme})=> theme.colors.purple};
+                        background-color: ${({theme})=> theme.colors.baseButton};
+                    }
+
+                }
+                
+                &> button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: none;
+                    border-radius: 6px;
+                    color: ${({theme})=> theme.colors.white};
+                    padding: 8px;
+                    background-color: ${({theme})=> theme.colors.purpleDark};
+                }
+            }
+        }
+
         &> div {
-            border: 1px solid red;
-            margin-top: 10px;
+            
+            margin-top: 100px;
         }
 
         &> p {
@@ -32,6 +95,7 @@ export const ContainerCard = styled.div `
         }
 
         &> h3 {
+            margin-top: 10px;
             font-size: 20px;
             font-weight: bold;
             font-family: ${({theme})=> theme.fonts.baloo};

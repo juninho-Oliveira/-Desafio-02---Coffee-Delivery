@@ -1,7 +1,12 @@
+import { Banner } from "../../components/Banner/Banner";
+import { Main } from "../../components/Main/Main";
 
 
 export function Home () {
     return (
-        <h1>Home</h1>
+        <>
+            <Banner />
+            <Main />
+        </>
     )
 }

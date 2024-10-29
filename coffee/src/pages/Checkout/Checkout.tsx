@@ -1,7 +1,12 @@
+import { Carrinho } from "../../components/Checkout/Carrinho";
+import { ConatinerCheckout } from './styled'
 
 
 export function Checkout() {
     return (
-        <h1>Checkout</h1>
+        <ConatinerCheckout>
+            <Carrinho />
+        </ConatinerCheckout>
+        
     )
 }

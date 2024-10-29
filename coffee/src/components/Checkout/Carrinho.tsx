@@ -1,4 +1,4 @@
-import { ContainerMain, ContainerCoffe, ContainerPedido, ContainerPagamento, CardPagamento, ContainerInput } from "./styled"
+import { ContainerMain, BoxPedido, ContainerCoffe, ContainerPedido, ContainerPagamento, CardPagamento, ContainerInput } from "./styled"
 import { MapPin, CurrencyDollar, CreditCard, Money, Bank } from "@phosphor-icons/react"
 
 export function Carrinho() {
@@ -6,10 +6,13 @@ export function Carrinho() {
         <ContainerMain>
             <ContainerPedido>
                 <h1>Complete seu pedido</h1>
-                <div>
-                    <div>
-                        <MapPin size={26} />
-                        <h3>Endereço de Entrega</h3>
+                <BoxPedido>
+                    
+                    <div className="endereco">
+                        <section>
+                            <MapPin size={26} />
+                            <h3>Endereço de Entrega</h3>
+                        </section>
                         <p>Informe o endereço onde deseja receber seu pedido</p>
                     </div>
 
@@ -22,31 +25,33 @@ export function Carrinho() {
                         <input type="text" placeholder="Cidade" />
                         <input type="text" placeholder="UF" />
                     </ContainerInput>
-                </div>
+                </BoxPedido>
 
                 <ContainerPagamento>
-                    <div>
-                        <CurrencyDollar size={26} />
-                        <h3>Pagamento</h3>
+                    <div className="pagamento">
+                        <section>
+                            <CurrencyDollar size={26} />
+                            <h3>Pagamento</h3>
+                        </section>
                         <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
                     </div>
 
-                    <div>
-                        <CardPagamento>
-                            < CreditCard size={26}/>
+                    <CardPagamento>
+                        <button>
+                            < CreditCard size={26} />
                             <p>CARTÃO DE CRÉDITO</p>
-                        </CardPagamento>
+                        </button>
 
-                        <CardPagamento>
-                            < Bank size={26}/>
+                        <button>
+                            < Bank size={26} />
                             <p>CARTÃO DE DÉBITO</p>
-                        </CardPagamento>
+                        </button>
 
-                        <CardPagamento>
-                            < Money size={26}/>
+                        <button>
+                            < Money size={26} />
                             <p>DINHEIRO</p>
-                        </CardPagamento>
-                    </div>
+                        </button>
+                    </CardPagamento>
                 </ContainerPagamento>
             </ContainerPedido>
 

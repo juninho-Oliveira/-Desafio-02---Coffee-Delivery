@@ -1,13 +1,15 @@
-import { ContainerMain, BoxPedido, ContainerCoffe, ContainerPedido, ContainerPagamento, CardPagamento, ContainerInput } from "./styled"
+import { Card } from "../Card/CardPagamento"
+import { Input, ContainerNumero, BoxPagamento, ContainerBairro, ContainerMain, BoxPedido, ContainerCoffe, ContainerPedido, ContainerPagamento, CardPagamento, ContainerInput } from "./styled"
 import { MapPin, CurrencyDollar, CreditCard, Money, Bank } from "@phosphor-icons/react"
 
 export function Carrinho() {
+
     return (
         <ContainerMain>
             <ContainerPedido>
                 <h1>Complete seu pedido</h1>
                 <BoxPedido>
-                    
+
                     <div className="endereco">
                         <section>
                             <MapPin size={26} />
@@ -17,13 +19,22 @@ export function Carrinho() {
                     </div>
 
                     <ContainerInput>
-                        <input type="text" placeholder="CEP" />
-                        <input type="text" placeholder="Rua" />
-                        <input type="text" placeholder="Número" />
-                        <input type="text" placeholder="Complemento" />
-                        <input type="text" placeholder="Bairro" />
-                        <input type="text" placeholder="Cidade" />
-                        <input type="text" placeholder="UF" />
+                        <Input className="cep" type="number" placeholder="CEP" />
+
+                        <ContainerInput>
+                            <Input type="text" placeholder="Rua" />
+                        </ContainerInput>
+
+                        <ContainerNumero>
+                            <Input type="number" placeholder="Número" />
+                            <Input className="complemento" type="text" placeholder="Complemento" />
+                        </ContainerNumero>
+
+                        <ContainerBairro>
+                            <Input type="text" placeholder="Bairro" />
+                            <Input className="cidade" type="text" placeholder="Cidade" />
+                            <Input className="uf" type="text" placeholder="UF" />
+                        </ContainerBairro>
                     </ContainerInput>
                 </BoxPedido>
 
@@ -32,9 +43,11 @@ export function Carrinho() {
                         <section>
                             <CurrencyDollar size={26} />
                             <h3>Pagamento</h3>
-                        </section>
+                        </ section>
                         <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
                     </div>
+
+
 
                     <CardPagamento>
                         <button>
@@ -57,6 +70,11 @@ export function Carrinho() {
 
             <ContainerCoffe>
                 <h1>Cafés selecionados </h1>
+
+                <BoxPagamento>
+                    <Card />
+                    <hr />
+                </BoxPagamento>
             </ContainerCoffe>
         </ContainerMain>
     )

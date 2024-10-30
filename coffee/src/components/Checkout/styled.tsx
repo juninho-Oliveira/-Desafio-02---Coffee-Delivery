@@ -1,13 +1,17 @@
 import styled from "styled-components";
 
 
-export const ContainerMain = styled.main `
-    width: 80%;
+export const ContainerMain = styled.main`
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+
+    justify-content: center;
+    width: 80%;
+    gap: 32px;
+    
 `;
 
-export const ContainerPedido = styled.section `
+export const ContainerPedido = styled.section`
     display: flex;
     flex-direction: column;
    /* border: 1px solid red;*/
@@ -16,34 +20,34 @@ export const ContainerPedido = styled.section `
 
     &> h1 {
         font-size: 18px;
-        font-family: ${({theme})=> theme.fonts.baloo};
+        font-family: ${({ theme }) => theme.fonts.baloo};
         font-weight: bold;
-        color: ${({theme})=> theme.colors.baseSubtitle};
+        color: ${({ theme }) => theme.colors.baseSubtitle};
     }
 `;
 
-export const BoxPedido = styled.div `
+export const BoxPedido = styled.div`
     width: 100%;
     height: 23rem;
     border-radius: 6px;
     padding: 40px;
-    background-color: ${({theme})=> theme.colors.baseCard};
+    background-color: ${({ theme }) => theme.colors.baseCard};
 
     &> .endereco {
         display: flex;
         flex-direction: column;
-        margin-bottom: 32px;
+        margin-bottom: 28px;
 
         &> section {
             display: flex;
             align-items: center;
             gap: 5px;
-            color: ${({theme})=> theme.colors.yellowDark};
-            font-family: ${({theme})=> theme.fonts.roboto};
+            color: ${({ theme }) => theme.colors.yellowDark};
+            font-family: ${({ theme }) => theme.fonts.roboto};
             
 
             &> h3 {
-                color: ${({theme})=> theme.colors.baseSubtitle};
+                color: ${({ theme }) => theme.colors.baseSubtitle};
                 font-weight: 400;
             }
         }
@@ -53,8 +57,8 @@ export const BoxPedido = styled.div `
             margin-right: 200px;
             text-align: end;
             font-size: 14px;
-            font-family: ${({theme})=> theme.fonts.roboto};
-            color: ${({theme})=> theme.colors.baseText};
+            font-family: ${({ theme }) => theme.fonts.roboto};
+            color: ${({ theme }) => theme.colors.baseText};
         }
 
 
@@ -62,14 +66,22 @@ export const BoxPedido = styled.div `
     
 `;
 
-export const ContainerCoffe= styled.section `
+export const ContainerCoffe = styled.section`
     display: flex;
-    border: 1px solid black;
-    width: 33rem;
-    height: 31rem;
+    flex-direction: column;
+   /* border: 1px solid red;*/
+    gap: 12px;
+    width: 45rem;
+
+    &> h1 {
+        font-size: 18px;
+        font-family: ${({ theme }) => theme.fonts.baloo};
+        font-weight: bold;
+        color: ${({ theme }) => theme.colors.baseSubtitle};
+    }
 `;
 
-export const ContainerPagamento = styled.section `
+export const ContainerPagamento = styled.section`
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -77,7 +89,7 @@ export const ContainerPagamento = styled.section `
     height: 13rem;
     padding: 40px;
     border-radius: 6px;
-    background-color: ${({theme})=> theme.colors.baseCard};
+    background-color: ${({ theme }) => theme.colors.baseCard};
 
     &> .pagamento {
         display: flex;
@@ -87,12 +99,12 @@ export const ContainerPagamento = styled.section `
             display: flex;
             align-items: center;
             gap: 5px;
-            color: ${({theme})=> theme.colors.purple};
-            font-family: ${({theme})=> theme.fonts.roboto};
+            color: ${({ theme }) => theme.colors.purple};
+            font-family: ${({ theme }) => theme.fonts.roboto};
             
 
             &> h3 {
-                color: ${({theme})=> theme.colors.baseSubtitle};
+                color: ${({ theme }) => theme.colors.baseSubtitle};
                 font-weight: 400;
             }
         }
@@ -102,8 +114,8 @@ export const ContainerPagamento = styled.section `
             margin-right: 300px;
             text-align: end;
             font-size: 14px;
-            font-family: ${({theme})=> theme.fonts.roboto};
-            color: ${({theme})=> theme.colors.baseText};
+            font-family: ${({ theme }) => theme.fonts.roboto};
+            color: ${({ theme }) => theme.colors.baseText};
         }
     }
 
@@ -111,7 +123,7 @@ export const ContainerPagamento = styled.section `
 
 `;
 
-export const CardPagamento = styled.div `
+export const CardPagamento = styled.div`
     
     display: flex;
     flex-direction: row;
@@ -126,21 +138,76 @@ export const CardPagamento = styled.div `
         gap: 8px;
         height: 51px;
         border-radius: 6px;
-        background-color: ${({theme})=> theme.colors.baseButton};
-        color: ${({theme})=> theme.colors.purple};
+        background-color: ${({ theme }) => theme.colors.baseButton};
+        color: ${({ theme }) => theme.colors.purple};
 
         &> p {
-            color: ${({theme})=> theme.colors.baseText};
+            color: ${({ theme }) => theme.colors.baseText};
         }
     }
 `;
 
-export const ContainerInput = styled.div `
+export const ContainerInput = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+
+    .cep {
+        width: 12.5rem;
+    }
+
+`;
+
+export const Input = styled.input`
+        border: 1px solid ${({ theme }) => theme.colors.baseButton};
+        background-color: ${({ theme }) => theme.colors.baseInput};
+        height: 2.6rem;
+        padding: 10px;
+        border-radius: 6px;
+        color: ${({theme})=> theme.colors.baseText};
+
+    &:focus {
+
+        outline: none;
+        border: 1px solid transparent; 
+    }
+`;
+
+
+export const ContainerNumero = styled.div`
+        display: flex;
+        justify-content: space-between;
+        .complemento {
+            width: 27rem;
+        }
+`;
+
+export const ContainerBairro = styled.div`
+        display: flex;
+        justify-content: space-between;
+        
+        .cidade {
+            width: 22.4rem;
+        }
+
+        .uf {
+            width: 3.7rem;
+        }
+`;
+
+export const BoxPagamento = styled.section `
+    padding: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 16px;
-    width: 35rem;
+    width: 28rem;
+    height: 31.2rem;
+
+    border-top-right-radius: 36px;
+    border-bottom-left-radius: 36px;
+
+    background-color: ${({theme})=> theme.colors.baseCard};
 
 `;

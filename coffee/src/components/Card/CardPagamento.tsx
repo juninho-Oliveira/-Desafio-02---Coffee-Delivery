@@ -1,4 +1,4 @@
-import { ContainerCardPagamento } from './styled'
+import { ContainerCardPagamento, Linha, ContainerValor, ContainerPrincipal } from './styled'
 import img from '../../assets/Coffee.png'
 import { Trash } from '@phosphor-icons/react'
 
@@ -9,61 +9,69 @@ export function Card() {
     const total = '9,90'
     return (
         <>
-            <ContainerCardPagamento>
-                <img src={img} alt="" />
-                <div>
-                    <p>Expresso Tradicional
-                        <span>R${total}</span>
-                    </p>
+            <ContainerPrincipal>
+                <ContainerCardPagamento>
+                    <img src={img} alt="" />
+                    <div>
+                        <p>Expresso Tradicional
+                            <span>R${total}</span>
+                        </p>
 
-                    <section className='botoes'>
+                        <section className='botoes'>
 
-                        <div className="botao">
-                            <button >-</button>
-                            <p>1</p>
-                            <button>+</button>
-                        </div>
-                        <div className="deletar botao">
-                            <button >
-                                <Trash size={16} /> <span>REMOVER</span></button>
-                        </div>
-                    </section>
+                            <div className="botao">
+                                <button >-</button>
+                                <p>1</p>
+                                <button>+</button>
+                            </div>
+                            <div className="deletar botao">
+                                <button >
+                                    <Trash size={16} /> <span>REMOVER</span></button>
+                            </div>
+                        </section>
 
-                </div>
-            </ContainerCardPagamento>
-            <hr />
+                    </div>
+                </ContainerCardPagamento>
+                <Linha />
 
-            <ContainerCardPagamento>
-                <img src={img} alt="" />
-                <div>
-                    <p>Expresso Tradicional
-                        <span>R${total}</span>
-                    </p>
+                <ContainerCardPagamento>
+                    <img src={img} alt="" />
+                    <div>
+                        <p>Expresso Tradicional
+                            <span>R${total}</span>
+                        </p>
 
-                    <section className='botoes'>
+                        <section className='botoes'>
 
-                        <div className="botao">
-                            <button >-</button>
-                            <p>1</p>
-                            <button>+</button>
-                        </div>
-                        <div className="deletar botao">
-                            <button >
-                                <Trash size={16} /> <span>REMOVER</span></button>
-                        </div>
-                    </section>
+                            <div className="botao">
+                                <button >-</button>
+                                <p>1</p>
+                                <button>+</button>
+                            </div>
+                            <div className="deletar botao">
+                                <button >
+                                    <Trash size={16} /> <span>REMOVER</span></button>
+                            </div>
+                        </section>
 
-                </div>
-            </ContainerCardPagamento>
-            <hr />
-            
-            <section>
-                <div><p>Total de itens</p> <span>RS {total}</span></div>
-                <div><p>Entrega</p> <span>RS {total}</span></div>
-                <div><p>Total</p> <span>RS {total}</span></div>
+                    </div>
+                </ContainerCardPagamento>
+                <Linha />
 
-                <button>CONFIRMAR PEDIDO</button>
-            </section>
+                <ContainerValor>
+                    <div>
+                        <p>Total de itens</p> <span>R$ {total}</span>
+                    </div>
+                    <div>
+                        <p>Entrega</p> <span>R$ {total}</span>
+                    </div>
+                    <div >
+                        <p className='total'>Total <span>R$ {total}</span></p> 
+                    </div>
+                </ContainerValor>
+                
+                <button className='confirma'>CONFIRMAR PEDIDO</button>
+            </ContainerPrincipal>
         </>
     )
 }

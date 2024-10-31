@@ -1,6 +1,12 @@
+import { SuccessContainer } from "../../components/Success/Success";
+import { MainContainer } from "./styled";
+
+
 
 export function Success() {
     return (
-        <h1>Success</h1>
+        <MainContainer>
+            <SuccessContainer />
+        </MainContainer>
     )
 }

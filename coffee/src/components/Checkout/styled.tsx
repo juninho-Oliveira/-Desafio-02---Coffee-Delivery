@@ -144,6 +144,11 @@ export const CardPagamento = styled.div`
         &> p {
             color: ${({ theme }) => theme.colors.baseText};
         }
+
+        &:hover {
+            background-color: ${({theme})=> theme.colors.purpleLight};
+            border: 0.5px solid ${({theme})=> theme.colors.purple};
+        }
     }
 `;
 

@@ -102,6 +102,7 @@ export const ContainerPrincipal = styled.main`
     gap: 24px;
 
     .confirma {
+        cursor: pointer;
         width: 23rem;
         height: 2.8rem;
         border-radius: 6px;

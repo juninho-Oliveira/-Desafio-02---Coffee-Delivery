@@ -4,8 +4,7 @@ import styled from "styled-components";
 export const ContainerMain = styled.main`
     display: flex;
     flex-direction: row;
-
-    justify-content: center;
+    justify-content: space-between;
     width: 80%;
     gap: 32px;
     
@@ -71,7 +70,7 @@ export const ContainerCoffe = styled.section`
     flex-direction: column;
    /* border: 1px solid red;*/
     gap: 12px;
-    width: 45rem;
+    width: auto;
 
     &> h1 {
         font-size: 18px;

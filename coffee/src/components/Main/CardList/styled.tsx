@@ -10,12 +10,13 @@ export const ContainerCard = styled.div `
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-bottom: 25px;
 
     .conteudo {
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        gap: 5px;
+        gap: 4px;
         align-items: center;
 
         &> section {

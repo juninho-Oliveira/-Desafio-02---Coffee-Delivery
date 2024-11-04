@@ -82,9 +82,26 @@ export const ContainerCard = styled.div `
             }
         }
 
-        &> div {
-            
+        &> .containerConteudo {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            width: auto;
             margin-top: 100px;
+
+            &> div {
+            border-radius: 100px;
+            background-color: ${({theme})=> theme.colors.yellowLight};
+            
+            &>p{  
+                text-transform: uppercase;
+                font-size: 10px;
+                font-weight: bold;
+                font-family: ${({theme})=>theme.fonts.roboto};
+                padding: 4px 8px;
+                color: ${({theme})=> theme.colors.yellowDark};
+            }
+        }
         }
 
         &> p {
@@ -102,19 +119,6 @@ export const ContainerCard = styled.div `
             font-family: ${({theme})=> theme.fonts.baloo};
         }
 
-        &> div {
-            border-radius: 100px;
-            background-color: ${({theme})=> theme.colors.yellowLight};
-            
-            &>p{
-                
-                font-size: 10px;
-                font-weight: bold;
-                font-family: ${({theme})=>theme.fonts.roboto};
-                padding: 4px 8px;
-                color: ${({theme})=> theme.colors.yellowDark};
-            }
-        }
     }
 
     &> img {

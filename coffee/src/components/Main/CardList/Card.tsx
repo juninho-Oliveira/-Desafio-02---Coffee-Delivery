@@ -6,11 +6,12 @@ import { useNavigate } from "react-router-dom";
 interface PropsCard {
     imagem: string;
     paragrafo: string;
-    titulo: string; 
+    titulo: string;
     descricao: string;
+    p?: string;
 }
 
-export function CardList({imagem, paragrafo, titulo, descricao}: PropsCard) {
+export function CardList({ imagem, paragrafo, titulo, descricao, p }: PropsCard) {
 
     const [quanti, setQuanti] = useState<number>(0);
     const [preco, setPreco] = useState<number>(0);
@@ -18,7 +19,7 @@ export function CardList({imagem, paragrafo, titulo, descricao}: PropsCard) {
     function somar() {
         setQuanti(prevQuanti => prevQuanti + 1)
         setPreco(prevQuanti => prevQuanti + 9.90)
-        
+
     }
 
     function menos() {
@@ -37,7 +38,17 @@ export function CardList({imagem, paragrafo, titulo, descricao}: PropsCard) {
         <ContainerCard>
             <img src={imagem} alt="" />
             <div className="conteudo">
-                <div><p>{paragrafo}</p></div>
+                <div className="containerConteudo">
+                    <div>
+                        <p>{paragrafo}</p>
+                    </div>
+
+                    <div>
+                        {p && (<p>{p}</p>
+)}
+                    </div>
+
+                </div>
                 <h3>{titulo}</h3>
                 <p>{descricao}</p>
 
@@ -49,10 +60,10 @@ export function CardList({imagem, paragrafo, titulo, descricao}: PropsCard) {
                     <div>
                         <div className="botao">
                             <button onClick={menos}>-</button>
-                                    <p>{quanti}</p>
+                            <p>{quanti}</p>
                             <button onClick={somar}>+</button>
                         </div>
-                        <button onClick={handleButtonCart} title="Abrir carrinho de compras"> 
+                        <button onClick={handleButtonCart} title="Abrir carrinho de compras">
                             <ShoppingCart size={26} />
                         </button>
                     </div>

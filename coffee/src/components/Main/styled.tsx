@@ -6,6 +6,7 @@ export const ContainerMain = styled.main `
     justify-content: center;
     background-color: ${({theme})=> theme.colors.background};
     height: 103rem;
+    
 
     &> main {
         padding: 54px 0 54px 0;
@@ -19,7 +20,7 @@ export const ContainerMain = styled.main `
 
         .containerCardList {
             display: flex;
-            
+            text-align: center;
             flex-wrap: wrap;
             gap: 37px;
         }

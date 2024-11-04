@@ -1,12 +1,40 @@
 import { ContainerCardPagamento, Linha, ContainerValor, ContainerPrincipal } from './styled'
-import img from '../../assets/Coffee.png'
+import img from '../../assets/Americano.png'
 import { Trash } from '@phosphor-icons/react'
+import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react';
 
 
 
 export function Card() {
 
-    const total = '9,90'
+    const [entrega, setEntrega] = useState<number>(4.50)
+    const [quanti, setQuanti] = useState<number>(0);
+    const [preco, setPreco] = useState<number>(0);
+    const [total, setTotal] = useState<number>(0)
+
+
+    function somar() {
+        setQuanti(prevQuanti => prevQuanti + 1)
+        setPreco(prevQuanti => prevQuanti + 9.90)
+    }
+
+    function menos() {
+        setQuanti(prevQuanti => prevQuanti - 1)
+        setPreco(prevQuanti => prevQuanti - 9.90)
+    }
+
+    useEffect (()=>{
+        setTotal(preco + entrega)
+    },[preco])
+
+    const navigate = useNavigate();
+
+    const handleButtonCorfim = () => {
+        navigate('/Success')
+    }
+
+
     return (
         <>
             <ContainerPrincipal>
@@ -14,15 +42,15 @@ export function Card() {
                     <img src={img} alt="" />
                     <div>
                         <p>Expresso Tradicional
-                            <span>R${total}</span>
+                            <span>R${preco.toFixed(2).replace('.', ',')}</span>
                         </p>
 
                         <section className='botoes'>
 
                             <div className="botao">
-                                <button >-</button>
-                                <p>1</p>
-                                <button>+</button>
+                                <button onClick={menos}>-</button>
+                                <p>{quanti}</p>
+                                <button onClick={somar}>+</button>
                             </div>
                             <div className="deletar botao">
                                 <button >
@@ -38,7 +66,7 @@ export function Card() {
                     <img src={img} alt="" />
                     <div>
                         <p>Expresso Tradicional
-                            <span>R${total}</span>
+                            <span>R${preco.toFixed(2).replace('.', ',')}</span>
                         </p>
 
                         <section className='botoes'>
@@ -60,17 +88,17 @@ export function Card() {
 
                 <ContainerValor>
                     <div>
-                        <p>Total de itens</p> <span>R$ {total}</span>
+                        <p>Total de itens</p> <span>R$ {quanti.toFixed(2).replace('.',',')}</span>
                     </div>
                     <div>
-                        <p>Entrega</p> <span>R$ {total}</span>
+                        <p>Entrega</p> <span>R$ {entrega.toFixed(2).replace('.', ',')}</span>
                     </div>
                     <div >
-                        <p className='total'>Total <span>R$ {total}</span></p> 
+                        <p className='total'>Total <span>R$ {total.toFixed(2).replace('.', ',')}</span></p> 
                     </div>
                 </ContainerValor>
                 
-                <button className='confirma'>CONFIRMAR PEDIDO</button>
+                <button onClick={handleButtonCorfim} className='confirma'>CONFIRMAR PEDIDO</button>
             </ContainerPrincipal>
         </>
     )

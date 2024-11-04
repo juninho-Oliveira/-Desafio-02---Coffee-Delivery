@@ -40,6 +40,8 @@ export const HeaderStyled = styled.header`
             }
 
             .carrinho {
+                cursor: pointer;
+                border: none;
                 display: flex;
                 align-items: center;
                 justify-content: center;

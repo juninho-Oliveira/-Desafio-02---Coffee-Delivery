@@ -1,9 +1,16 @@
 import { ContainerCard } from "./styled"
-import img from '../../../assets/Coffee.png'
 import { ShoppingCart } from "@phosphor-icons/react"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 
-export function CardList() {
+interface PropsCard {
+    imagem: string;
+    paragrafo: string;
+    titulo: string; 
+    descricao: string;
+}
+
+export function CardList({imagem, paragrafo, titulo, descricao}: PropsCard) {
 
     const [quanti, setQuanti] = useState<number>(0);
     const [preco, setPreco] = useState<number>(0);
@@ -19,14 +26,20 @@ export function CardList() {
         setPreco(prevQuanti => prevQuanti - 9.90)
     }
 
+    const navigate = useNavigate();
+
+    const handleButtonCart = () => {
+        navigate('/Checkout')
+    }
+
 
     return (
         <ContainerCard>
-            <img src={img} alt="" />
+            <img src={imagem} alt="" />
             <div className="conteudo">
-                <div><p>TRADICIONAL</p></div>
-                <h3>Expresso Tradicional</h3>
-                <p>O tradicional café feito com água quente e grãos moídos</p>
+                <div><p>{paragrafo}</p></div>
+                <h3>{titulo}</h3>
+                <p>{descricao}</p>
 
                 <section>
                     <p>
@@ -39,7 +52,7 @@ export function CardList() {
                                     <p>{quanti}</p>
                             <button onClick={somar}>+</button>
                         </div>
-                        <button title="Abrir carrinho de compras"> 
+                        <button onClick={handleButtonCart} title="Abrir carrinho de compras"> 
                             <ShoppingCart size={26} />
                         </button>
                     </div>

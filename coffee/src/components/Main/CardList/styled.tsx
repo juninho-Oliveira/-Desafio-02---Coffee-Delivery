@@ -69,6 +69,7 @@ export const ContainerCard = styled.div `
                 }
                 
                 &> button {
+                    cursor: pointer;
                     display: flex;
                     align-items: center;
                     justify-content: center;

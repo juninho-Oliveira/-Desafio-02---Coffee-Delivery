@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom"
 import { Card } from "../Card/CardPagamento"
-import { Input, ContainerNumero, BoxPagamento, ContainerBairro, ContainerMain, BoxPedido, ContainerCoffe, ContainerPedido, ContainerPagamento, CardPagamento, ContainerInput } from "./styled"
+import { Input, Carregando, ContainerNumero, BoxPagamento, ContainerBairro, ContainerMain, BoxPedido, ContainerCoffe, ContainerPedido, ContainerPagamento, CardPagamento, ContainerInput } from "./styled"
 import { MapPin, CurrencyDollar, CreditCard, Money, Bank } from "@phosphor-icons/react"
 
 export function Carrinho() {
@@ -80,9 +80,9 @@ export function Carrinho() {
                 <BoxPagamento>
                     {
                         item === undefined ? (
-                            <div>
+                            <Carregando>
                                 <h1>Carrinho vazio</h1>
-                            </div>
+                            </Carregando>
                         ) : (
                             <Card title={item.titulo} img={item.imagem} />
                         )

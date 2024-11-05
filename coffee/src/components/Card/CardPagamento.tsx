@@ -1,7 +1,7 @@
-import { ContainerCardPagamento, Linha, ContainerValor, ContainerPrincipal } from './styled'
-import { Trash } from '@phosphor-icons/react'
+import { Linha, ContainerValor, ContainerPrincipal } from './styled'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+import { CardSelection } from '../CardPagamento/CardSelection';
 
 interface PropsCart {
     title: string;
@@ -19,15 +19,15 @@ export function Card({title, img}:PropsCart) {
     const entrega = 4.50;
 
 
-    function somar() {
-        setQuanti(prevQuanti => prevQuanti + 1)
-        setPreco(prevQuanti => prevQuanti + 9.90)
-    }
+    // function somar() {
+    //     setQuanti(prevQuanti => prevQuanti + 1)
+    //     setPreco(prevQuanti => prevQuanti + 9.90)
+    // }
 
-    function menos() {
-        setQuanti(prevQuanti => prevQuanti - 1)
-        setPreco(prevQuanti => prevQuanti - 9.90)
-    }
+    // function menos() {
+    //     setQuanti(prevQuanti => prevQuanti - 1)
+    //     setPreco(prevQuanti => prevQuanti - 9.90)
+    // }
 
     useEffect (()=>{
         setTotal(preco + entrega)
@@ -43,54 +43,18 @@ export function Card({title, img}:PropsCart) {
     return (
         <>
             <ContainerPrincipal>
-                <ContainerCardPagamento>
-                    <img src={img} alt="" />
-                    <div>
-                        <p>{title}
-                            <span>R${preco.toFixed(2).replace('.', ',')}</span>
-                        </p>
-
-                        <section className='botoes'>
-
-                            <div className="botao">
-                                <button onClick={menos}>-</button>
-                                <p>{quanti}</p>
-                                <button onClick={somar}>+</button>
-                            </div>
-                            <div className="deletar botao">
-                                <button >
-                                    <Trash size={16} /> <span>REMOVER</span></button>
-                            </div>
-                        </section>
-
-                    </div>
-                </ContainerCardPagamento>
+               
+                <CardSelection 
+                    img={img} 
+                    title={title}
+                    />
                 <Linha />
 
-                <ContainerCardPagamento>
-                    <img src={img} alt="" />
-                    <div>
-                        <p>{title}
-                            <span>R${preco.toFixed(2).replace('.', ',')}</span>
-                        </p>
-
-                        <section className='botoes'>
-
-                            <div className="botao">
-                                <button >-</button>
-                                <p>{quanti}</p>
-                                <button>+</button>
-                            </div>
-                            <div className="deletar botao">
-                                <button >
-                                    <Trash size={16} /> <span>REMOVER</span></button>
-                            </div>
-                        </section>
-
-                    </div>
-                </ContainerCardPagamento>
+                <CardSelection 
+                    img={img} 
+                    title={title}
+                    />
                 <Linha />
-
                 <ContainerValor>
                     <div>
                         <p>Total de itens</p> <span>R$ {quanti.toFixed(2).replace('.',',')}</span>

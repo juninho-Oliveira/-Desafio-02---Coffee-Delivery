@@ -215,3 +215,7 @@ export const BoxPagamento = styled.section `
     background-color: ${({theme})=> theme.colors.baseCard};
 
 `;
+
+export const Carregando = styled.div `
+    
+`;

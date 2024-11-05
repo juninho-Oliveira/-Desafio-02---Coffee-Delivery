@@ -1,17 +1,22 @@
 import { ContainerCardPagamento, Linha, ContainerValor, ContainerPrincipal } from './styled'
-import img from '../../assets/Americano.png'
 import { Trash } from '@phosphor-icons/react'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 
+interface PropsCart {
+    title: string;
+    img: string; 
+}
 
 
-export function Card() {
+export function Card({title, img}:PropsCart) {
 
-    const [entrega, setEntrega] = useState<number>(4.50)
+    // const [entrega, setEntrega] = useState<number>(4.50)
     const [quanti, setQuanti] = useState<number>(0);
     const [preco, setPreco] = useState<number>(0);
     const [total, setTotal] = useState<number>(0)
+
+    const entrega = 4.50;
 
 
     function somar() {
@@ -41,7 +46,7 @@ export function Card() {
                 <ContainerCardPagamento>
                     <img src={img} alt="" />
                     <div>
-                        <p>Expresso Tradicional
+                        <p>{title}
                             <span>R${preco.toFixed(2).replace('.', ',')}</span>
                         </p>
 
@@ -65,7 +70,7 @@ export function Card() {
                 <ContainerCardPagamento>
                     <img src={img} alt="" />
                     <div>
-                        <p>Expresso Tradicional
+                        <p>{title}
                             <span>R${preco.toFixed(2).replace('.', ',')}</span>
                         </p>
 
@@ -73,7 +78,7 @@ export function Card() {
 
                             <div className="botao">
                                 <button >-</button>
-                                <p>1</p>
+                                <p>{quanti}</p>
                                 <button>+</button>
                             </div>
                             <div className="deletar botao">

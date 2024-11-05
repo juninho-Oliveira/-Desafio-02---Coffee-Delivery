@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 
 interface PropsCard {
+    id: number
     imagem: string;
     paragrafo: string;
     titulo: string;
@@ -11,28 +12,46 @@ interface PropsCard {
     p?: string;
 }
 
-export function CardList({ imagem, paragrafo, titulo, descricao, p }: PropsCard) {
+export function CardList({ imagem, paragrafo, titulo, descricao, p, id }: PropsCard) {
 
-    const [quanti, setQuanti] = useState<number>(0);
-    const [preco, setPreco] = useState<number>(0);
+    // const [novoElemento, setNovoElemento] = useState<any>([]);
+
+
+    const [quanti, setQuanti] = useState<number>(1);
+    const [preco, setPreco] = useState<number>(9.90);
 
     function somar() {
-        setQuanti(prevQuanti => prevQuanti + 1)
-        setPreco(prevQuanti => prevQuanti + 9.90)
 
+        setQuanti((prevQuanti) => {
+            const novaQuantidade = prevQuanti + 1
+            setPreco(novaQuantidade * 9.90)
+            return novaQuantidade
+        })  
     }
 
     function menos() {
-        setQuanti(prevQuanti => prevQuanti - 1)
-        setPreco(prevQuanti => prevQuanti - 9.90)
+        if(quanti > 0) {
+            setQuanti((prevQuanti)=> {
+                const novaQuantidade = prevQuanti - 1;        
+                setPreco(novaQuantidade * 9.90)
+                return novaQuantidade
+            })
+        }
     }
 
-    const navigate = useNavigate();
+   const navigate = useNavigate();
 
     const handleButtonCart = () => {
-        navigate('/Checkout')
+        const item = {imagem, paragrafo, titulo, descricao, p, id}
+        // alert(id)
+        navigate('/Checkout', {
+            state: {item}
+        })
+       
+        // setNovoElemento({imagem, paragrafo, titulo, descricao, p, id})
+        
     }
-
+    
 
     return (
         <ContainerCard>

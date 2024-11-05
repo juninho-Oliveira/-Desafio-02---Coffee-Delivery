@@ -1,8 +1,14 @@
+import { useLocation } from "react-router-dom"
 import { Card } from "../Card/CardPagamento"
 import { Input, ContainerNumero, BoxPagamento, ContainerBairro, ContainerMain, BoxPedido, ContainerCoffe, ContainerPedido, ContainerPagamento, CardPagamento, ContainerInput } from "./styled"
 import { MapPin, CurrencyDollar, CreditCard, Money, Bank } from "@phosphor-icons/react"
 
 export function Carrinho() {
+
+    const location = useLocation();
+
+    const { item } = location.state || {};
+    // console.log("Item no Carrinho:", item.title);
 
     return (
         <ContainerMain>
@@ -72,7 +78,16 @@ export function Carrinho() {
                 <h1>Cafés selecionados </h1>
 
                 <BoxPagamento>
-                    <Card />
+                    {
+                        item === undefined ? (
+                            <div>
+                                <h1>Carrinho vazio</h1>
+                            </div>
+                        ) : (
+                            <Card title={item.titulo} img={item.imagem} />
+                        )
+                    }
+
                     <hr />
                 </BoxPagamento>
             </ContainerCoffe>

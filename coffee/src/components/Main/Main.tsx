@@ -1,6 +1,7 @@
 
 import { CardList } from "./CardList/Card"
 import { ContainerMain } from "./styled"
+
 import expresso from '../../assets/Expresso.png'
 import expressoAmerico from '../../assets/Americano.png'
 import expressoCremoso from '../../assets/Expresso Cremoso.png'
@@ -23,11 +24,11 @@ interface CardData {
     content: string;
     description: string;
     p?: string;
-    img: string; // Propriedade para a imagem
+    img: string; 
 }
 
 export function Main() {
-
+    
     const cardData: CardData[] = [
         {
             id: 1,
@@ -152,11 +153,13 @@ export function Main() {
                             return (
                                 <CardList
                                     key={card.id}
+                                    id={card.id}
                                     imagem={card.img}
                                     paragrafo={card.description}
                                     titulo={card.title}
                                     descricao={card.content}
-                                    p={card.p} />
+                                    p={card.p}
+                                     />
                             )
                         })}
                     </div>

@@ -5,13 +5,14 @@ import { Trash } from '@phosphor-icons/react'
 interface PropsCard {
     img: string;
     title: string;
+    quantidade: number;
 }
 
-export function CardSelection ({img, title}: PropsCard) {
+export function CardSelection ({img, title, quantidade}: PropsCard) {
 
     console.log('cardSelection', img)
 
-    const [quanti, setQuanti] = useState<number>(0);
+    const [quanti, setQuanti] = useState<number>(quantidade);
     const [preco, setPreco] = useState<number>(0);
     // const [total, setTotal] = useState<number>(0)
 

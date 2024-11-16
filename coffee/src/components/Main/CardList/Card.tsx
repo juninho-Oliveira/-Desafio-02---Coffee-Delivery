@@ -42,8 +42,10 @@ export function CardList({ imagem, paragrafo, titulo, descricao, p, id, onSelect
    const navigate = useNavigate();
     
     const handleButtonCart = () => {
-        // alert(id)
-        navigate('/Checkout', {})
+        let valor = quanti;
+        navigate('/Checkout', {
+            state: { valor }
+        })
         
     }
     

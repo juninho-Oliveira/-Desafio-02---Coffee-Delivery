@@ -1,9 +1,10 @@
-import { Linha, ContainerValor, ContainerPrincipal } from './styled'
+import { ContainerValor, ContainerPrincipal } from './styled'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { CardSelection } from '../CardPagamento/CardSelection';
 
 interface PropsCart {
+    quantidade: number;
     lista: {
         title: string;
         img: string;
@@ -12,14 +13,10 @@ interface PropsCart {
 }
 
 
-export function Card({lista }: PropsCart) {
-
-    // console.log('card pagamento', id)
-    // console.log('card pagamento', title)
-    // console.log('card pagamento', id)
+export function Card({lista, quantidade }: PropsCart) {
 
     // const [entrega, setEntrega] = useState<number>(4.50)
-    const [quanti, setQuanti] = useState<number>(0);
+    const [totalItens, setTotalItens] = useState<number>(0);
     const [preco, setPreco] = useState<number>(0);
     const [total, setTotal] = useState<number>(0)
 
@@ -38,6 +35,7 @@ export function Card({lista }: PropsCart) {
 
     useEffect(() => {
         setTotal(preco + entrega)
+        setTotalItens(lista.length)
     }, [preco])
 
     const navigate = useNavigate();
@@ -56,13 +54,14 @@ export function Card({lista }: PropsCart) {
                         <CardSelection
                             img={e.img}
                             title={e.title}
+                            quantidade={quantidade}
                         />
                     )
                 })}
 
                 <ContainerValor>
                     <div>
-                        <p>Total de itens</p> <span>R$ {quanti.toFixed(2).replace('.', ',')}</span>
+                        <p>Total de itens</p> <span>R$ {totalItens.toFixed(2).replace('.', ',')}</span>
                     </div>
                     <div>
                         <p>Entrega</p> <span>R$ {entrega.toFixed(2).replace('.', ',')}</span>

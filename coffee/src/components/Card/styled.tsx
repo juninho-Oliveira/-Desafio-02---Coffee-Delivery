@@ -1,12 +1,6 @@
 import styled from "styled-components";
 
 
-
-export const Linha = styled.hr`
-    border: 1px solid ${({ theme }) => theme.colors.baseButton};
-    width: 100%;
-`;
-
 export const ContainerPrincipal = styled.main`
     display: flex;
     flex-direction: column;

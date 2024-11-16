@@ -7,6 +7,9 @@ export const ContainerCardPagamento = styled.section`
     gap: 20px;
     width: 23rem;
     height: 5rem;
+    
+    border-bottom: 2px solid ${({ theme }) => theme.colors.baseButton};
+    width: 100%;
 
     &> img{
         width: 64px;

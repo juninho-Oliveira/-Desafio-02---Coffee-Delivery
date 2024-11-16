@@ -207,7 +207,7 @@ export const BoxPagamento = styled.section `
     justify-content: center;
     flex-direction: column;
     width: 28rem;
-    height: 31.2rem;
+    height: auto;
 
     border-top-right-radius: 36px;
     border-bottom-left-radius: 36px;

@@ -16,6 +16,7 @@ import Cubano from '../../assets/Cubano.png'
 import Havaiano from '../../assets/Havaiano.png'
 import Arabe from '../../assets/Árabe.png'
 import Irlandes from '../../assets/Irlandês.png'
+import { useEffect, useState } from "react"
 
 
 interface CardData {
@@ -28,7 +29,8 @@ interface CardData {
 }
 
 export function Main() {
-    
+    const [novoElemento, setNovoElemento] = useState<any>([]);
+
     const cardData: CardData[] = [
         {
             id: 1,
@@ -140,6 +142,43 @@ export function Main() {
         }
     ]
 
+    function IdCard(id: number) {
+        // Encontra o item baseado no ID
+        const arrayNovo = cardData.filter((e: any) => e.id === id); 
+        const novoItem = arrayNovo[0]; // Pega o primeiro item do array
+    
+        if (!novoItem) {
+            console.error(`Item com id ${id} não encontrado!`);
+            return;
+        }
+    
+        // Recupera os itens já salvos no localStorage
+        const storedData = localStorage.getItem('novoElemento');
+        const savedItems: any[] = storedData ? JSON.parse(storedData) : [];
+    
+        // Verifica se o item já existe no array
+        const itemExists = savedItems.some((item) => item.id === id);
+    
+        if (itemExists) {
+            console.log(`Item com id ${id} já foi adicionado.`);
+            return; // Não adiciona o item novamente
+        }
+    
+        // Adiciona o novo item se ele não existir
+        setNovoElemento((prev: any) => {
+            const updatedArray = [...prev, novoItem]; // Adiciona o objeto diretamente
+            localStorage.setItem('novoElemento', JSON.stringify(updatedArray)); // Salva no localStorage
+            return updatedArray;
+        });
+    }
+    
+    
+
+    useEffect (()=> {
+
+        console.log('lista main', novoElemento)
+    }, [novoElemento])
+
     return (
         <ContainerMain>
             <main>
@@ -159,6 +198,7 @@ export function Main() {
                                     titulo={card.title}
                                     descricao={card.content}
                                     p={card.p}
+                                    onSelectId={IdCard}
                                      />
                             )
                         })}

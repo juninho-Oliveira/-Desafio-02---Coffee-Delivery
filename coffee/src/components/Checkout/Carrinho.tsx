@@ -1,14 +1,22 @@
-import { useLocation } from "react-router-dom"
+// import { useLocation } from "react-router-dom"
 import { Card } from "../Card/CardPagamento"
 import { Input, Carregando, ContainerNumero, BoxPagamento, ContainerBairro, ContainerMain, BoxPedido, ContainerCoffe, ContainerPedido, ContainerPagamento, CardPagamento, ContainerInput } from "./styled"
 import { MapPin, CurrencyDollar, CreditCard, Money, Bank } from "@phosphor-icons/react"
+import { useEffect, useState } from "react";
 
 export function Carrinho() {
+    const [novoElemento, setNovoElemento] = useState<any>([]);
 
-    const location = useLocation();
 
-    const { item } = location.state || {};
-    // console.log("Item no Carrinho:", item.title);
+    useEffect(() => {
+        // Recuperando os dados do localStorage
+        const savedData = localStorage.getItem('novoElemento');
+        if (savedData) {
+            setNovoElemento(JSON.parse(savedData)); // Convertendo de volta para o formato de array
+        }
+
+        
+    }, []);
 
     return (
         <ContainerMain>
@@ -78,15 +86,14 @@ export function Carrinho() {
                 <h1>Cafés selecionados </h1>
 
                 <BoxPagamento>
-                    {
-                        item === undefined ? (
-                            <Carregando>
-                                <h1>Carrinho vazio</h1>
-                            </Carregando>
-                        ) : (
-                            <Card title={item.titulo} img={item.imagem} />
-                        )
-                    }
+                {novoElemento.length === 0 ? (
+                        <Carregando>
+                            <h1>Carrinho vazio</h1>
+                        </Carregando>
+                    ) : (
+                        <Card
+                            lista={novoElemento}/>
+                    )}
 
                     <hr />
                 </BoxPagamento>

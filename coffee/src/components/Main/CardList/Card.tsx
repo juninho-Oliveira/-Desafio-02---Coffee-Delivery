@@ -10,18 +10,18 @@ interface PropsCard {
     titulo: string;
     descricao: string;
     p?: string;
+    onSelectId: (id: number) => void; 
 }
 
-export function CardList({ imagem, paragrafo, titulo, descricao, p, id }: PropsCard) {
-
-    // const [novoElemento, setNovoElemento] = useState<any>([]);
+export function CardList({ imagem, paragrafo, titulo, descricao, p, id, onSelectId }: PropsCard) {
 
 
-    const [quanti, setQuanti] = useState<number>(1);
+    const [quanti, setQuanti] = useState<number>(0);
     const [preco, setPreco] = useState<number>(9.90);
 
     function somar() {
 
+        onSelectId(id)
         setQuanti((prevQuanti) => {
             const novaQuantidade = prevQuanti + 1
             setPreco(novaQuantidade * 9.90)
@@ -40,15 +40,10 @@ export function CardList({ imagem, paragrafo, titulo, descricao, p, id }: PropsC
     }
 
    const navigate = useNavigate();
-
+    
     const handleButtonCart = () => {
-        const item = {imagem, paragrafo, titulo, descricao, p, id}
         // alert(id)
-        navigate('/Checkout', {
-            state: {item}
-        })
-       
-        // setNovoElemento({imagem, paragrafo, titulo, descricao, p, id})
+        navigate('/Checkout', {})
         
     }
     

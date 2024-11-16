@@ -9,11 +9,13 @@ interface PropsCard {
 
 export function CardSelection ({img, title}: PropsCard) {
 
+    console.log('cardSelection', img)
+
     const [quanti, setQuanti] = useState<number>(0);
     const [preco, setPreco] = useState<number>(0);
-    const [total, setTotal] = useState<number>(0)
+    // const [total, setTotal] = useState<number>(0)
 
-    const entrega = 4.50;
+    // const entrega = 4.50;
 
 
     function somar() {

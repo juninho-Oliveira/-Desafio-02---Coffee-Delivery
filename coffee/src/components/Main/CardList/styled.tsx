@@ -61,6 +61,7 @@ export const ContainerCard = styled.div `
                     width: 72px;
 
                     &> button {
+                        cursor: pointer;
                         border: none;
                         font-size: 24px;
                         color: ${({theme})=> theme.colors.purple};

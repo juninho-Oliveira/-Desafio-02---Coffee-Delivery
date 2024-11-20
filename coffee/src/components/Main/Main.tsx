@@ -30,6 +30,7 @@ interface CardData {
 
 export function Main() {
     const [novoElemento, setNovoElemento] = useState<any>([]);
+    const [quantidade, setQuantidade] = useState<any>([])
 
     const cardData: CardData[] = [
         {
@@ -142,7 +143,8 @@ export function Main() {
         }
     ]
 
-    function IdCard(id: number) {
+    function IdCard(id: number, quantidade: number, valor: number ) {
+        
         // Encontra o item baseado no ID
         const arrayNovo = cardData.filter((e: any) => e.id === id); 
         const novoItem = arrayNovo[0]; // Pega o primeiro item do array
@@ -172,11 +174,9 @@ export function Main() {
         });
     }
     
-    
-
     useEffect (()=> {
 
-        console.log('lista main', novoElemento)
+        setQuantidade([...quantidade])
     }, [novoElemento])
 
     return (

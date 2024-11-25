@@ -5,6 +5,7 @@ export const ContainerMain = styled.main`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
     width: 80%;
     gap: 32px;
     

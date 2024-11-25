@@ -10,7 +10,7 @@ interface PropsCard {
 
 export function CardSelection ({img, title, quantidade}: PropsCard) {
 
-    console.log('cardSelection', img)
+    // console.log('cardSelection', img)
 
     const [quanti, setQuanti] = useState<number>(quantidade);
     const [preco, setPreco] = useState<number>(0);

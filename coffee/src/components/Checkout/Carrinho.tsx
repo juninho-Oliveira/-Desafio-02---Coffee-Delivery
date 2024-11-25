@@ -1,5 +1,4 @@
-// import { useLocation } from "react-router-dom"
-import { useLocation } from "react-router-dom";
+
 import { Card } from "../Card/CardPagamento"
 import { Input, Carregando, ContainerNumero, BoxPagamento, ContainerBairro, ContainerMain, BoxPedido, ContainerCoffe, ContainerPedido, ContainerPagamento, CardPagamento, ContainerInput } from "./styled"
 import { MapPin, CurrencyDollar, CreditCard, Money, Bank } from "@phosphor-icons/react"
@@ -10,17 +9,14 @@ export function Carrinho() {
 
 
     useEffect(() => {
+        // setNovoElemento(valor)
         // Recuperando os dados do localStorage
         const savedData = localStorage.getItem('novoElemento');
         if (savedData) {
             setNovoElemento(JSON.parse(savedData)); // Convertendo de volta para o formato de array
         }
     }, []);
-
-    const location = useLocation();
-    const { valor } = location.state || {};
     
-    // console.log('quantidade',valor)
 
     return (
         <ContainerMain>
@@ -96,7 +92,7 @@ export function Carrinho() {
                         </Carregando>
                     ) : (
                         <Card
-                            quantidade={valor}
+                            quantidade={novoElemento.length}
                             lista={novoElemento}/>
                     )}
 

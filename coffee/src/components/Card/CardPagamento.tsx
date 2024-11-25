@@ -13,7 +13,7 @@ interface PropsCart {
 }
 
 
-export function Card({lista, quantidade }: PropsCart) {
+export function Card({ quantidade, lista, }: PropsCart) {
 
     // const [entrega, setEntrega] = useState<number>(4.50)
     const [totalItens, setTotalItens] = useState<number>(0);
@@ -36,6 +36,7 @@ export function Card({lista, quantidade }: PropsCart) {
     useEffect(() => {
         setTotal(preco + entrega)
         setTotalItens(lista.length)
+        console.log(lista)
     }, [preco])
 
     const navigate = useNavigate();

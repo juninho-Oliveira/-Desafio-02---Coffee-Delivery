@@ -1,6 +1,6 @@
 import { ContainerCard } from "./styled"
 import { ShoppingCart } from "@phosphor-icons/react"
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { useNavigate } from "react-router-dom";
 
 interface PropsCard {
@@ -13,13 +13,14 @@ interface PropsCard {
     onSelectId: (id: number, quantidade: number, valor: number ) => void; 
 }
 
-export function CardList({ imagem, paragrafo, titulo, descricao, p, id, onSelectId }: PropsCard) {
+export function CardList({ imagem, paragrafo, titulo, descricao, p, id, onSelectId, }: PropsCard) {
 
 
     const [quanti, setQuanti] = useState<number>(0);
     const [preco, setPreco] = useState<number>(9.90);
 
     function somar() {
+        onSelectId(id, quanti, preco)
         setQuanti((prevQuanti) => {
             const novaQuantidade = prevQuanti + 1
             setPreco(novaQuantidade * 9.90)
@@ -37,17 +38,11 @@ export function CardList({ imagem, paragrafo, titulo, descricao, p, id, onSelect
         }
     }
 
-    useEffect(()=> {
-        onSelectId(id, quanti, preco)
-    }, [quanti])
-
    const navigate = useNavigate();
     
     const handleButtonCart = () => {
-        let valor = quanti;
-        navigate('/Checkout', {
-            state: { valor }
-        })
+        
+        navigate('/Checkout', {})
         
     }
     

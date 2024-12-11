@@ -6,14 +6,15 @@ interface PropsCard {
     img: string;
     title: string;
     quantidade: number;
+    precoValor: number;
 }
 
-export function CardSelection ({img, title, quantidade}: PropsCard) {
+export function CardSelection ({img, title, quantidade, precoValor}: PropsCard) {
 
     // console.log('cardSelection', img)
 
     const [quanti, setQuanti] = useState<number>(quantidade);
-    const [preco, setPreco] = useState<number>(0);
+    const [preco, setPreco] = useState<number>(precoValor);
     // const [total, setTotal] = useState<number>(0)
 
     // const entrega = 4.50;
@@ -21,7 +22,7 @@ export function CardSelection ({img, title, quantidade}: PropsCard) {
 
     function somar() {
         setQuanti(prevQuanti => prevQuanti + 1)
-        setPreco(prevQuanti => prevQuanti + 9.90)
+        setPreco(prevQuanti => prevQuanti + precoValor)
     }
 
     function menos() {

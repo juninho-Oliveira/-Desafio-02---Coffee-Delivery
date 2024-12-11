@@ -1,6 +1,6 @@
 import { ContainerCard } from "./styled"
 import { ShoppingCart } from "@phosphor-icons/react"
-import {  useState } from "react"
+import {  useState, useEffect} from "react"
 import { useNavigate } from "react-router-dom";
 
 interface PropsCard {
@@ -10,41 +10,50 @@ interface PropsCard {
     titulo: string;
     descricao: string;
     p?: string;
+    preco: number;
     onSelectId: (id: number, quantidade: number, valor: number ) => void; 
 }
 
-export function CardList({ imagem, paragrafo, titulo, descricao, p, id, onSelectId, }: PropsCard) {
+export function CardList({ preco, imagem, paragrafo, titulo, descricao, p, id, onSelectId, }: PropsCard) {
 
 
-    const [quanti, setQuanti] = useState<number>(0);
-    const [preco, setPreco] = useState<number>(9.90);
+    const [quanti, setQuanti] = useState<number>(1);
+    const [precoTotal, setPrecoTotal] = useState<number>(preco);
 
-    function somar() {
-        onSelectId(id, quanti, preco)
-        setQuanti((prevQuanti) => {
-            const novaQuantidade = prevQuanti + 1
-            setPreco(novaQuantidade * 9.90)
-            return novaQuantidade
-        })  
-    }
+    const somar = () => {
+        // Aumenta a quantidade e recalcula o preço
+        const novaQuantidade = quanti + 1;
+        setQuanti(novaQuantidade);
+        const novoPreco = novaQuantidade * preco;
+        setPrecoTotal(novoPreco);
 
-    function menos() {
-        if(quanti > 0) {
-            setQuanti((prevQuanti)=> {
-                const novaQuantidade = prevQuanti - 1;        
-                setPreco(novaQuantidade * 9.90)
-                return novaQuantidade
-            })
+        // Envia os dados atualizados para o componente pai
+        onSelectId(id, novaQuantidade, novoPreco);
+    };
+
+    const menos = () => {
+        if (quanti > 1) {
+            // Diminui a quantidade e recalcula o preço
+            const novaQuantidade = quanti - 1;
+            setQuanti(novaQuantidade);
+            const novoPreco = novaQuantidade * preco;
+            setPrecoTotal(novoPreco);
+
+            // Envia os dados atualizados para o componente pai
+            onSelectId(id, novaQuantidade, novoPreco);
         }
-    }
+    };
 
    const navigate = useNavigate();
     
     const handleButtonCart = () => {
-        
         navigate('/Checkout', {})
-        
     }
+
+        // Atualizando o preço e a quantidade ao inicializar o componente
+        useEffect(() => {
+            setPrecoTotal(quanti * preco);
+        }, [preco, quanti]);
     
 
     return (

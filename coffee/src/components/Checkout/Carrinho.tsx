@@ -92,7 +92,6 @@ export function Carrinho() {
                         </Carregando>
                     ) : (
                         <Card
-                            quantidade={novoElemento.length}
                             lista={novoElemento}/>
                     )}
 

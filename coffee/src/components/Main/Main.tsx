@@ -25,7 +25,9 @@ interface CardData {
     content: string;
     description: string;
     p?: string;
-    img: string; 
+    img: string;
+    quantidade: number;
+    preco: number; 
 }
 
 export function Main() {
@@ -39,6 +41,8 @@ export function Main() {
             content: 'O tradicional café feito com água quente e grãos moídos',
             description: 'Tradicional',
             img: expresso,
+            quantidade: 0,
+            preco: 9.90,
         },
         {
             id: 2,
@@ -46,6 +50,8 @@ export function Main() {
             content: 'Expresso diluído, menos intenso que o tradicional',
             description: 'Tradicional',
             img: expressoAmerico,
+            quantidade: 0,
+            preco: 9.90,
         },
         {
             id: 3,
@@ -53,6 +59,8 @@ export function Main() {
             content: 'Café expresso tradicional com espuma cremosa',
             description: 'Tradicional',
             img: expressoCremoso,
+            quantidade: 0,
+            preco: 9.90,
         },
         {
             id: 4,
@@ -61,6 +69,8 @@ export function Main() {
             description: 'Tradicional',
             p: 'Gelado',
             img: expressoGelado,
+            quantidade: 0,
+            preco: 9.90,
         },
         {
             id: 6,
@@ -69,6 +79,8 @@ export function Main() {
             description: 'Tradicional',
             p: 'Com Leite',
             img: CafeComLeite,
+            quantidade: 0,
+            preco: 9.90,
         },
         {
             id: 7,
@@ -77,6 +89,8 @@ export function Main() {
             description: 'Tradicional',
             p: 'Com Leite',
             img: Latte,
+            quantidade: 0,
+            preco: 9.90,
         },
         {
             id: 8,
@@ -85,6 +99,8 @@ export function Main() {
             description: 'Tradicional',
             p: 'COM LEITE',
             img: Capuccino,
+            quantidade: 0,
+            preco: 9.90,
         },
         {
             id: 9,
@@ -93,6 +109,8 @@ export function Main() {
             description: 'Tradicional',
             p: 'com leite',
             img: Macchiato,
+            quantidade: 0,
+            preco: 9.90,
         },
         {
             id: 10,
@@ -101,6 +119,8 @@ export function Main() {
             description: 'Tradicional',
             p: 'com leite ',
             img: Mocaccino,
+            quantidade: 0,
+            preco: 9.90,
         },
         {
             id: 11,
@@ -109,6 +129,8 @@ export function Main() {
             description: 'especial',
             p: 'com leite',
             img: chocolateQuente,
+            quantidade: 0,
+            preco: 9.90,
         },
         {
             id: 12,
@@ -117,6 +139,8 @@ export function Main() {
             description: 'Tradicional',
             p: 'gelado',
             img: Cubano,
+            quantidade: 0,
+            preco: 9.90,
         },
         {
             id: 13,
@@ -124,6 +148,8 @@ export function Main() {
             content: 'Bebida adocicada preparada com café e leite de coco',
             description: 'especial',
             img: Havaiano,
+            quantidade: 0,
+            preco: 9.90,
         },
         {
             id: 14,
@@ -131,6 +157,8 @@ export function Main() {
             content: 'Bebida preparada com grãos de café árabe e especiarias',
             description: 'especial',
             img: Arabe,
+            quantidade: 0,
+            preco: 9.90,
         }
         ,
         {
@@ -140,41 +168,55 @@ export function Main() {
             description: 'especial',
             p: 'ALCOÓLICO',
             img: Irlandes,
+            quantidade: 0,
+            preco: 9.90,
         }
     ]
 
-    function IdCard(id: number, quantidade: number, valor: number ) {
-        
-        console.log(`Id: ${id}, Quantidade: ${quantidade}, Valor: ${valor} `)
-
+    function IdCard(id: number, quantidade: number, valor: number) {
         // Encontra o item baseado no ID
-        const arrayNovo = cardData.filter((e: any) => e.id === id); 
+        const arrayNovo = cardData.filter((e: any) => e.id === id);
         const novoItem = arrayNovo[0]; // Pega o primeiro item do array
-    
+
         if (!novoItem) {
             console.error(`Item com id ${id} não encontrado!`);
             return;
         }
-    
+
+        // Atualiza a quantidade do item encontrado
+        novoItem.quantidade += quantidade; // Adiciona a quantidade ao valor atual
+
+        // Calcula o valor total
+        const total = novoItem.quantidade * novoItem.preco;
+
         // Recupera os itens já salvos no localStorage
         const storedData = localStorage.getItem('novoElemento');
         const savedItems: any[] = storedData ? JSON.parse(storedData) : [];
-    
-        // Verifica se o item já existe no array
+
+        // Verifica se o item já existe no array de itens salvos
         const itemExists = savedItems.some((item) => item.id === id);
-    
+
         if (itemExists) {
-            console.log(`Item com id ${id} já foi adicionado.`);
-            return; // Não adiciona o item novamente
+            // Atualiza o item salvo no localStorage com a nova quantidade
+            const updatedItems = savedItems.map(item =>
+                item.id === id ? { ...item, quantidade: novoItem.quantidade, total } : item
+            );
+            localStorage.setItem('novoElemento', JSON.stringify(updatedItems)); // Salva no localStorage
+        } else {
+            // Caso o item não exista no localStorage, adiciona ele com a quantidade e preço
+            savedItems.push({ ...novoItem, total });
+            localStorage.setItem('novoElemento', JSON.stringify(savedItems)); // Salva no localStorage
         }
-    
-        // Adiciona o novo item se ele não existir
+
+        // Atualiza o estado (se necessário)
         setNovoElemento((prev: any) => {
-            const updatedArray = [...prev, novoItem]; // Adiciona o objeto diretamente
-            localStorage.setItem('novoElemento', JSON.stringify(updatedArray)); // Salva no localStorage
-            return updatedArray;
+            const updatedArray = prev.map((item: any)=>
+                item.id === id ? { ...item, quantidade: novoItem.quantidade, total } : item
+            );
+            return updatedArray; // Retorna o array atualizado
         });
     }
+    
 
     useEffect(()=> {
         console.log(`nova array: `, novoElemento)
@@ -201,7 +243,7 @@ export function Main() {
                                     descricao={card.content}
                                     p={card.p}
                                     onSelectId={IdCard}
-                                    
+                                    preco={card.preco}
                                      />
                             )
                         })}

@@ -1,4 +1,5 @@
 
+import { useLocation } from "react-router-dom";
 import { Card } from "../Card/CardPagamento"
 import { Input, Carregando, ContainerNumero, BoxPagamento, ContainerBairro, ContainerMain, BoxPedido, ContainerCoffe, ContainerPedido, ContainerPagamento, CardPagamento, ContainerInput } from "./styled"
 import { MapPin, CurrencyDollar, CreditCard, Money, Bank } from "@phosphor-icons/react"
@@ -6,18 +7,26 @@ import { useEffect, useState } from "react";
 
 export function Carrinho() {
     const [novoElemento, setNovoElemento] = useState<any>([]);
-
+    const [precoTotal, setPrecoTotal] = useState(0)
+    // const location = useLocation();
 
     useEffect(() => {
-        // setNovoElemento(valor)
         // Recuperando os dados do localStorage
         const savedData = localStorage.getItem('novoElemento');
         if (savedData) {
-            setNovoElemento(JSON.parse(savedData)); // Convertendo de volta para o formato de array
+            setNovoElemento(JSON.parse(savedData)); 
         }
-    }, []);
+        const soma = novoElemento.map((e: any)=> {
+            return e.total
+        })
+        const precoSomado = soma.reduce((e:any, a:any) => {return e+a},0)
+        setPrecoTotal(precoSomado)
+    }, [precoTotal]);
     
+    //const {precoTotal} = location.state || {};
 
+    // console.log(precoTotal)
+    
     return (
         <ContainerMain>
             <ContainerPedido>
@@ -92,7 +101,9 @@ export function Carrinho() {
                         </Carregando>
                     ) : (
                         <Card
-                            lista={novoElemento}/>
+                            
+                            lista={novoElemento}
+                            totalValor={precoTotal}/>
                     )}
 
                     <hr />

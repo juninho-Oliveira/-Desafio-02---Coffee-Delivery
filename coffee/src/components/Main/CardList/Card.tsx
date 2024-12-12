@@ -1,6 +1,6 @@
 import { ContainerCard } from "./styled"
 import { ShoppingCart } from "@phosphor-icons/react"
-import {  useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 
 interface PropsCard {
@@ -11,7 +11,7 @@ interface PropsCard {
     descricao: string;
     p?: string;
     preco: number;
-    onSelectId: (id: number, quantidade: number, valor: number ) => void; 
+    onSelectId: (id: number, quantidade: number, valor: number) => void;
 }
 
 export function CardList({ preco, imagem, paragrafo, titulo, descricao, p, id, onSelectId, }: PropsCard) {
@@ -44,17 +44,16 @@ export function CardList({ preco, imagem, paragrafo, titulo, descricao, p, id, o
         }
     };
 
-   const navigate = useNavigate();
-    
-    const handleButtonCart = () => {
-        navigate('/Checkout', {})
-    }
+    // Atualizando o preço e a quantidade ao inicializar o componente
+    useEffect(() => {
+        setPrecoTotal(quanti * preco);
+    }, [preco, quanti]);
 
-        // Atualizando o preço e a quantidade ao inicializar o componente
-        useEffect(() => {
-            setPrecoTotal(quanti * preco);
-        }, [preco, quanti]);
-    
+    const navigate = useNavigate();
+
+    const handleButtonCart = () => {
+        navigate('/Checkout', { state:{precoTotal}})
+    }
 
     return (
         <ContainerCard>
@@ -67,7 +66,7 @@ export function CardList({ preco, imagem, paragrafo, titulo, descricao, p, id, o
 
                     <div>
                         {p && (<p>{p}</p>
-)}
+                        )}
                     </div>
 
                 </div>
@@ -76,7 +75,7 @@ export function CardList({ preco, imagem, paragrafo, titulo, descricao, p, id, o
 
                 <section>
                     <p>
-                        <span>R$</span> {preco.toFixed(2).replace('.', ',')}
+                        <span>R$</span> {precoTotal.toFixed(2).replace('.', ',')}
                     </p>
 
                     <div>

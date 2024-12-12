@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { CardSelection } from '../CardPagamento/CardSelection';
 
 interface PropsCart {
-    
+    totalValor: number;
     lista: {
         title: string;
         img: string;
@@ -13,7 +13,7 @@ interface PropsCart {
 }
 
 
-export function Card({ lista }: PropsCart) {
+export function Card({ lista, totalValor }: PropsCart) {
 
     // const [entrega, setEntrega] = useState<number>(4.50)
     const [totalItens, setTotalItens] = useState<number>(0);
@@ -22,22 +22,12 @@ export function Card({ lista }: PropsCart) {
 
     const entrega = 4.50;
 
-
-    // function somar() {
-    //     setQuanti(prevQuanti => prevQuanti + 1)
-    //     setPreco(prevQuanti => prevQuanti + 9.90)
-    // }
-
-    // function menos() {
-    //     setQuanti(prevQuanti => prevQuanti - 1)
-    //     setPreco(prevQuanti => prevQuanti - 9.90)
-    // }
-
     useEffect(() => {
-        setTotal(preco + entrega)
+        setTotal(totalValor + entrega)
         setTotalItens(lista.length)
-        console.log(lista)
     }, [preco])
+
+    // console.log(`Total: ${totalValor}`)
 
     const navigate = useNavigate();
 
@@ -56,7 +46,7 @@ export function Card({ lista }: PropsCart) {
                             img={e.img}
                             title={e.title}
                             quantidade={e.quantidade}
-                            precoValor={e.preco}
+                            precoValor={e.total}
                         />
                     )
                 })}

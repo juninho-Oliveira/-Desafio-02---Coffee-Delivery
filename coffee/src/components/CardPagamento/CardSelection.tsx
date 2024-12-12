@@ -11,7 +11,7 @@ interface PropsCard {
 
 export function CardSelection ({img, title, quantidade, precoValor}: PropsCard) {
 
-    // console.log('cardSelection', img)
+    // console.log('cardSelection', precoValor)
 
     const [quanti, setQuanti] = useState<number>(quantidade);
     const [preco, setPreco] = useState<number>(precoValor);
@@ -35,7 +35,7 @@ export function CardSelection ({img, title, quantidade, precoValor}: PropsCard) 
         <img src={img} alt="" />
         <div>
             <p>{title}
-                <span>R${preco.toFixed(2).replace('.', ',')}</span>
+                <span>R${precoValor.toFixed(2).replace('.', ',')}</span>
             </p>
 
             <section className='botoes'>

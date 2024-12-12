@@ -16,7 +16,7 @@ import Cubano from '../../assets/Cubano.png'
 import Havaiano from '../../assets/Havaiano.png'
 import Arabe from '../../assets/Árabe.png'
 import Irlandes from '../../assets/Irlandês.png'
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 
 interface CardData {
@@ -32,7 +32,6 @@ interface CardData {
 
 export function Main() {
     const [novoElemento, setNovoElemento] = useState<any>([]);
-    // const [quantidade, setQuantidade] = useState<any>([])
 
     const cardData: CardData[] = [
         {
@@ -173,7 +172,7 @@ export function Main() {
         }
     ]
 
-    function IdCard(id: number, quantidade: number, valor: number) {
+    function IdCard(id: number, quantidade: number,) {
         // Encontra o item baseado no ID
         const arrayNovo = cardData.filter((e: any) => e.id === id);
         const novoItem = arrayNovo[0]; // Pega o primeiro item do array
@@ -188,6 +187,7 @@ export function Main() {
 
         // Calcula o valor total
         const total = novoItem.quantidade * novoItem.preco;
+        total.toFixed(2)
 
         // Recupera os itens já salvos no localStorage
         const storedData = localStorage.getItem('novoElemento');
@@ -211,16 +211,12 @@ export function Main() {
         // Atualiza o estado (se necessário)
         setNovoElemento((prev: any) => {
             const updatedArray = prev.map((item: any)=>
+                
                 item.id === id ? { ...item, quantidade: novoItem.quantidade, total } : item
             );
             return updatedArray; // Retorna o array atualizado
         });
     }
-    
-
-    useEffect(()=> {
-        console.log(`nova array: `, novoElemento)
-    }, [novoElemento])
     
 
     return (

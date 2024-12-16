@@ -52,7 +52,7 @@ export function CardList({ preco, imagem, paragrafo, titulo, descricao, p, id, o
     const navigate = useNavigate();
 
     const handleButtonCart = () => {
-        navigate('/Checkout', { state:{precoTotal}})
+        navigate('/Checkout', { state:{quanti}})
     }
 
     return (

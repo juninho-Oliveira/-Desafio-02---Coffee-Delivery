@@ -9,30 +9,33 @@ interface PropsCart {
         title: string;
         img: string;
         id: number;
-    }[]
+    }[];
+    quantidade: number;
 }
 
 
-export function Card({ lista, totalValor }: PropsCart) {
+export function Card({ lista, totalValor, quantidade }: PropsCart) {
 
     //const [entrega, setEntrega] = useState<number>(4.50)
     const [totalItens, setTotalItens] = useState<number>(0);
-    const [preco, setPreco] = useState<number>(0);
     const [total, setTotal] = useState<number>(0)
 
     const entrega = 4.50;
-
+    
     useEffect(() => {
         setTotal(totalValor + entrega)
         setTotalItens(lista.length)
-    }, [preco])
-
-    // console.log(`Total: ${totalValor}`)
+    }, [totalItens])
 
     const navigate = useNavigate();
 
     const handleButtonCorfim = () => {
         navigate('/Success')
+    }
+
+    function IdCard(id: number) {
+        alert(quantidade)
+        
     }
 
 
@@ -43,6 +46,7 @@ export function Card({ lista, totalValor }: PropsCart) {
                 {lista.map((e: any) => {
                     return (
                         <CardSelection
+                            onSelectId={IdCard}
                             img={e.img}
                             title={e.title}
                             quantidade={e.quantidade}
@@ -53,7 +57,7 @@ export function Card({ lista, totalValor }: PropsCart) {
 
                 <ContainerValor>
                     <div>
-                        <p>Total de itens</p> <span>R$ {totalItens.toFixed(2).replace('.', ',')}</span>
+                        <p>Total de itens</p> <span> {totalItens}</span>
                     </div>
                     <div>
                         <p>Entrega</p> <span>R$ {entrega.toFixed(2).replace('.', ',')}</span>

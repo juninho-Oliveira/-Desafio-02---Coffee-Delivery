@@ -1,4 +1,3 @@
-
 import { useLocation } from "react-router-dom";
 import { Card } from "../Card/CardPagamento"
 import { Input, Carregando, ContainerNumero, BoxPagamento, ContainerBairro, ContainerMain, BoxPedido, ContainerCoffe, ContainerPedido, ContainerPagamento, CardPagamento, ContainerInput } from "./styled"
@@ -8,7 +7,6 @@ import { useEffect, useState } from "react";
 export function Carrinho() {
     const [novoElemento, setNovoElemento] = useState<any>([]);
     const [precoTotal, setPrecoTotal] = useState(0)
-    // const location = useLocation();
 
     useEffect(() => {
         // Recuperando os dados do localStorage
@@ -16,17 +14,19 @@ export function Carrinho() {
         if (savedData) {
             setNovoElemento(JSON.parse(savedData)); 
         }
+    }, []);
+
+    useEffect(()=> {
         const soma = novoElemento.map((e: any)=> {
             return e.total
         })
         const precoSomado = soma.reduce((e:any, a:any) => {return e+a},0)
         setPrecoTotal(precoSomado)
-    }, [precoTotal]);
+    }, [novoElemento])
     
-    //const {precoTotal} = location.state || {};
+    const location = useLocation();
+    const quanti = location.state?.quanti;
 
-    // console.log(precoTotal)
-    
     return (
         <ContainerMain>
             <ContainerPedido>
@@ -101,9 +101,9 @@ export function Carrinho() {
                         </Carregando>
                     ) : (
                         <Card
-                            
                             lista={novoElemento}
-                            totalValor={precoTotal}/>
+                            totalValor={precoTotal}
+                            quantidade={quanti}/>
                     )}
 
                     <hr />

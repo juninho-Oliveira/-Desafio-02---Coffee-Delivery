@@ -15,7 +15,7 @@ interface PropsCart {
 
 export function Card({ lista, totalValor }: PropsCart) {
 
-    // const [entrega, setEntrega] = useState<number>(4.50)
+    //const [entrega, setEntrega] = useState<number>(4.50)
     const [totalItens, setTotalItens] = useState<number>(0);
     const [preco, setPreco] = useState<number>(0);
     const [total, setTotal] = useState<number>(0)

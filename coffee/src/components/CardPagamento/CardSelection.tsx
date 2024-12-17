@@ -7,30 +7,38 @@ interface PropsCard {
     title: string;
     quantidade: number;
     precoValor: number;
+    id: number;
     onSelectId: (id: number) => void;
 }
 
-export function CardSelection ({img, title, quantidade, precoValor, onSelectId}: PropsCard) {
-
-    
+export function CardSelection ({id, img, title, quantidade, precoValor, onSelectId}: PropsCard) {
 
     const [quanti, setQuanti] = useState<number>(quantidade);
-    const [preco, setPreco] = useState<number>(precoValor);
-    // const [total, setTotal] = useState<number>(0)
-
-    // const entrega = 4.50;
-
+    const [preco, setPreco] = useState<number>(quantidade * precoValor); // Inicializa o preço com base na quantidade
 
     function somar() {
-        setQuanti(prevQuanti => prevQuanti + 1)
-        setPreco(prevQuanti => prevQuanti + precoValor)
-        onSelectId(quanti)
+        setQuanti(prevQuanti => {
+            const newQuanti = prevQuanti + 1;
+            setPreco(newQuanti * precoValor); // Atualiza o preço com a nova quantidade
+            return newQuanti;
+        });
     }
 
     function menos() {
-        setQuanti(prevQuanti => prevQuanti - 1)
-        setPreco(prevQuanti => prevQuanti - 9.90)
+        setQuanti(prevQuanti => {
+            if (prevQuanti > 1) { // Garante que a quantidade não será negativa
+                const newQuanti = prevQuanti - 1;
+                setPreco(newQuanti * precoValor); // Atualiza o preço com a nova quantidade
+                return newQuanti;
+            }
+            return prevQuanti; // Não muda a quantidade se for 1
+        });
     }
+
+    function excluir(id: any) {
+        onSelectId(id); // Chama a função para excluir o item
+    }
+
 
     return (
         <ContainerCardPagamento>
@@ -48,7 +56,7 @@ export function CardSelection ({img, title, quantidade, precoValor, onSelectId}:
                     <button onClick={somar}>+</button>
                 </div>
                 <div className="deletar botao">
-                    <button >
+                    <button onClick={() => excluir(id)}>
                         <Trash size={16} /> <span>REMOVER</span></button>
                 </div>
             </section>

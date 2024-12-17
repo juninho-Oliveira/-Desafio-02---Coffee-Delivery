@@ -79,6 +79,7 @@ export const ContainerCardPagamento = styled.section`
             align-items: center;
             gap: 2px;
             font-size: 12px;
+            cursor: pointer;
 
             &> span {
                 color: ${({ theme }) => theme.colors.baseText} ;

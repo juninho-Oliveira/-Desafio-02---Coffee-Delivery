@@ -16,37 +16,40 @@ interface PropsCart {
 
 export function Card({ lista, totalValor, quantidade }: PropsCart) {
 
-    //const [entrega, setEntrega] = useState<number>(4.50)
-    const [totalItens, setTotalItens] = useState<number>(0);
-    const [total, setTotal] = useState<number>(0)
-
+    const [totalItens, setTotalItens] = useState<number>(lista.length);
+    const [total, setTotal] = useState<number>(totalValor + 4.50); // Já somando o valor da entrega
+    const [novaLista, setNovaLista] = useState<any[]>(lista);
     const entrega = 4.50;
-    
-    useEffect(() => {
-        setTotal(totalValor + entrega)
-        setTotalItens(lista.length)
-    }, [totalItens])
 
     const navigate = useNavigate();
 
     const handleButtonCorfim = () => {
-        navigate('/Success')
+        navigate('/Success');
+    }
+    
+    // Função para excluir um item da lista
+    function ExcluirCard(id: number) {
+        const novaListaAtualizada = novaLista.filter((item: any) => item.id !== id);
+        setNovaLista(novaListaAtualizada);
     }
 
-    function IdCard(id: number) {
-        alert(quantidade)
-        
-    }
+    // Atualizar o total de itens e o total de valor
+    useEffect(() => {
+        setTotalItens(novaLista.length);  // Atualiza o número de itens
+        const novoTotalValor = novaLista.reduce((acc, item) => acc + item.total, 0);
+        setTotal(novoTotalValor + entrega); // Atualiza o total considerando os itens restantes e a entrega
+    }, [novaLista]);
 
 
     return (
         <>
             <ContainerPrincipal>
 
-                {lista.map((e: any) => {
+                {novaLista.map((e: any) => {
                     return (
                         <CardSelection
-                            onSelectId={IdCard}
+                            id={e.id}
+                            onSelectId={ExcluirCard}
                             img={e.img}
                             title={e.title}
                             quantidade={e.quantidade}
